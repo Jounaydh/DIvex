@@ -1,0 +1,38 @@
+'use client'
+
+import { ArrowRight } from 'lucide-react'
+import { forwardRef, ButtonHTMLAttributes } from 'react'
+
+type InteractiveHoverButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  text?: string
+}
+
+function cn(...classes: Array<string | undefined | false | null>) {
+  return classes.filter(Boolean).join(' ')
+}
+
+export const InteractiveHoverButton = forwardRef<HTMLButtonElement, InteractiveHoverButtonProps>(
+  ({ text = 'Button', className, ...props }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={cn(
+          'group relative w-32 cursor-pointer overflow-hidden rounded-full border border-zinc-800 bg-zinc-900 p-2 text-center font-semibold text-white transition-colors duration-300 hover:bg-red-800 hover:border-red-500',
+          className
+        )}
+        {...props}
+      >
+        <span className="inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+          {text}
+        </span>
+        <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
+          <span>{text}</span>
+          <ArrowRight />
+        </div>
+        <span className="absolute inset-y-0 left-0 w-0 bg-red-700 transition-all duration-300 group-hover:w-full group-hover:opacity-60" />
+      </button>
+    )
+  }
+)
+
+InteractiveHoverButton.displayName = 'InteractiveHoverButton'
