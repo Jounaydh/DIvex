@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { DotScreenShader } from '@/components/ui/dot-shader-background'
@@ -27,7 +29,7 @@ export default function Home() {
       </section>
       <section className="relative z-10 mt-[-14vh] flex min-h-[55vh] items-center justify-center px-6 pt-10 md:px-16">
         <div className="flex w-full max-w-[90rem] flex-col gap-10 rounded-2xl bg-zinc-900/85 p-12 shadow-2xl backdrop-blur-md md:flex-row md:items-center md:justify-between">
-          <div className="max-w-3xl text-left text-white drop-shadow-[0_0_18px_rgba(239,68,68,0.35)]">
+          <div className="max-w-3xl text-left text-white drop-shadow-[0_0_18px_rgba(94,173,229,0.35)]">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">
               Design, build, and evolve your digital experience with bespoke craftsmanship, performance-first engineering, and a partner who keeps quality and timelines non-negotiable—so you can launch with confidence, scale without friction, and maintain a brand presence that consistently outperforms expectations.
             </h2>
@@ -46,7 +48,7 @@ export default function Home() {
       </section>
       <footer className="relative z-10 w-full bg-black/90 py-12 mt-0">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 text-base text-white/85 md:px-12">
-          <span>Switch Tech</span>
+          <Image src="/2221.png" alt="Switch Tech logo" width={2000} height={260} className="h-6 w-auto" />
           <span>support@switchtech.example</span>
         </div>
       </footer>
@@ -55,6 +57,7 @@ export default function Home() {
 }
 
 function HeroIntro() {
+  const router = useRouter()
   const [hovering, setHovering] = useState(false)
   const options = ['Build a website', 'Build an app', 'Update your front end']
   const MotionInteractiveHoverButton = motion(InteractiveHoverButton)
@@ -72,13 +75,17 @@ function HeroIntro() {
           transition={{ type: 'spring', stiffness: 120, damping: 18 }}
         >
           <AnimatedCircleRings variant="quinary" className="h-[460px] w-[460px]" />
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white drop-shadow-[0_0_28px_rgba(239,68,68,0.5)]">
-              Switch Tech
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl font-light text-rose-50 max-w-3xl leading-relaxed drop-shadow-[0_0_18px_rgba(244,63,94,0.25)]">
-              taking website designs to a new level
-            </p>
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+            <div className="drop-shadow-[0_0_28px_rgba(94,173,229,0.5)] flex items-center justify-center">
+              <Image
+                src="/2221.png"
+                alt="Switch Tech logo"
+                width={2000}
+                height={260}
+                priority
+                className="h-auto w-[750px] max-w-full"
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -94,7 +101,10 @@ function HeroIntro() {
               <MotionInteractiveHoverButton
                 key={item}
                 text={item}
-                className="w-56 border-red-500/80 bg-red-700 text-white"
+                className="w-56 border-[#5eade5]/80 bg-[#5eade5] text-white"
+                onClick={() => {
+                  if (item === 'Build a website') router.push('/build')
+                }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
                   opacity: hovering ? 1 : 0,

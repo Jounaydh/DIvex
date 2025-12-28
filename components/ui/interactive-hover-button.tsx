@@ -17,7 +17,7 @@ export const InteractiveHoverButton = forwardRef<HTMLButtonElement, InteractiveH
       <button
         ref={ref}
         className={cn(
-          'group relative w-32 cursor-pointer overflow-hidden rounded-full border border-zinc-800 bg-zinc-900 p-2 text-center font-semibold text-white transition-colors duration-300 hover:bg-red-800 hover:border-red-500',
+          'group relative w-32 cursor-pointer overflow-hidden rounded-full border border-zinc-800 bg-zinc-900 p-2 text-center font-semibold text-white transition-colors duration-300 hover:bg-[#5eade5] hover:border-[#5eade5]',
           className
         )}
         {...props}
@@ -29,7 +29,7 @@ export const InteractiveHoverButton = forwardRef<HTMLButtonElement, InteractiveH
           <span>{text}</span>
           <ArrowRight />
         </div>
-        <span className="absolute inset-y-0 left-0 w-0 bg-red-700 transition-all duration-300 group-hover:w-full group-hover:opacity-60" />
+        <span className="absolute inset-y-0 left-0 w-0 bg-[#5eade5] transition-all duration-300 group-hover:w-full group-hover:opacity-60" />
       </button>
     )
   }

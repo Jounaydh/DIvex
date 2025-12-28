@@ -8,32 +8,32 @@ const menuItems = [
   {
     icon: <Home className="h-5 w-5" />,
     label: 'Home',
-    href: '#',
+    href: '/',
     gradient:
-      'radial-gradient(circle, rgba(239,68,68,0.2) 0%, rgba(239,68,68,0.08) 45%, rgba(239,68,68,0) 80%)',
+      'radial-gradient(circle, rgba(94,173,229,0.2) 0%, rgba(94,173,229,0.08) 45%, rgba(94,173,229,0) 80%)',
     iconColor: 'text-blue-500'
   },
   {
     icon: <Bell className="h-5 w-5" />,
     label: 'Notifications',
     href: '#',
-    gradient: 'radial-gradient(circle, rgba(239,68,68,0.2) 0%, rgba(239,68,68,0.08) 45%, rgba(239,68,68,0) 80%)',
-    iconColor: 'text-red-500'
+    gradient: 'radial-gradient(circle, rgba(94,173,229,0.2) 0%, rgba(94,173,229,0.08) 45%, rgba(94,173,229,0) 80%)',
+    iconColor: 'text-[#5eade5]'
   },
   {
     icon: <Settings className="h-5 w-5" />,
     label: 'Settings',
     href: '#',
-    gradient: 'radial-gradient(circle, rgba(239,68,68,0.2) 0%, rgba(239,68,68,0.08) 45%, rgba(239,68,68,0) 80%)',
-    iconColor: 'text-red-500'
+    gradient: 'radial-gradient(circle, rgba(94,173,229,0.2) 0%, rgba(94,173,229,0.08) 45%, rgba(94,173,229,0) 80%)',
+    iconColor: 'text-[#5eade5]'
   },
   {
     icon: <User className="h-5 w-5" />,
     label: 'Profile',
     href: '#',
     gradient:
-      'radial-gradient(circle, rgba(239,68,68,0.2) 0%, rgba(239,68,68,0.08) 45%, rgba(239,68,68,0) 80%)',
-    iconColor: 'text-red-500'
+      'radial-gradient(circle, rgba(94,173,229,0.2) 0%, rgba(94,173,229,0.08) 45%, rgba(94,173,229,0) 80%)',
+    iconColor: 'text-[#5eade5]'
   }
 ] as const
 
@@ -71,7 +71,7 @@ export function HeroMenuBar() {
         whileHover="hover"
       >
         <motion.div
-          className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-radial from-transparent via-red-400/25 via-40% to-transparent"
+          className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-radial from-transparent via-[#5eade5]/25 via-40% to-transparent"
           variants={navGlowVariants}
         />
         <ul className="relative z-10 flex items-center justify-between gap-8">
@@ -94,22 +94,22 @@ export function HeroMenuBar() {
                 />
                 <motion.a
                   href={item.href}
-                  className="relative z-10 flex items-center gap-2 rounded-xl px-4 py-2 text-sm text-zinc-200 transition-colors group-hover:text-white group-hover:bg-red-500/10"
+                  className="relative z-10 flex items-center gap-2 rounded-xl px-4 py-2 text-sm text-zinc-200 transition-colors group-hover:text-white group-hover:bg-[#5eade5]/10"
                   variants={itemVariants}
                   style={{ transformStyle: 'preserve-3d', transformOrigin: 'center bottom' }}
                 >
-                  <span className="transition-colors duration-300 text-red-400 group-hover:text-red-300">
+                  <span className="transition-colors duration-300 text-[#5eade5]/90 group-hover:text-[#5eade5]">
                     {item.icon}
                   </span>
                   <span>{item.label}</span>
                 </motion.a>
                 <motion.a
                   href={item.href}
-                  className="absolute inset-0 z-10 flex items-center gap-2 rounded-xl px-4 py-2 text-sm text-zinc-200 transition-colors group-hover:text-white group-hover:bg-red-500/10"
+                  className="absolute inset-0 z-10 flex items-center gap-2 rounded-xl px-4 py-2 text-sm text-zinc-200 transition-colors group-hover:text-white group-hover:bg-[#5eade5]/10"
                   variants={backVariants}
                   style={{ transformStyle: 'preserve-3d', transformOrigin: 'center top', rotateX: 90 }}
                 >
-                  <span className="transition-colors duration-300 text-red-400 group-hover:text-red-300">
+                  <span className="transition-colors duration-300 text-[#5eade5]/90 group-hover:text-[#5eade5]">
                     {item.icon}
                   </span>
                   <span>{item.label}</span>

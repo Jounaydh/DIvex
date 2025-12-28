@@ -23,8 +23,8 @@ const COLOR_VARIANTS = {
     gradient: 'from-purple-500/30'
   },
   quinary: {
-    border: ['border-red-500/60', 'border-rose-400/50', 'border-slate-600/30'],
-    gradient: 'from-red-500/30'
+    border: ['border-[#1f222a]/70', 'border-[#2b2f38]/60', 'border-[#0f1116]/40'],
+    gradient: 'from-[#353a44]/35'
   },
   senary: {
     border: ['border-blue-500/60', 'border-sky-400/50', 'border-slate-600/30'],
@@ -35,8 +35,8 @@ const COLOR_VARIANTS = {
     gradient: 'from-gray-500/30'
   },
   octonary: {
-    border: ['border-red-500/60', 'border-rose-400/50', 'border-slate-600/30'],
-    gradient: 'from-red-500/30'
+    border: ['border-[#252932]/70', 'border-[#313640]/60', 'border-[#13161d]/40'],
+    gradient: 'from-[#3e444e]/35'
   }
 } as const
 
@@ -49,8 +49,8 @@ export function AnimatedCircleRings({ variant = 'octonary', className }: Animate
   const variantStyles = COLOR_VARIANTS[variant]
 
   return (
-    <div className={clsx('relative h-[420px] w-[420px] rounded-full bg-red-900/80', className)}>
-      <div className="absolute inset-0 rounded-full bg-red-700/70" />
+    <div className={clsx('relative h-[420px] w-[420px] rounded-full bg-[#12151b]/90', className)}>
+      <div className="absolute inset-0 rounded-full bg-[#1a1e25]/85" />
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}

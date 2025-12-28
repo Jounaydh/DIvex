@@ -111,19 +111,19 @@ function Scene() {
     switch (theme) {
       case 'dark':
         return {
-          dotColor: '#ef4444', // red glow on mouse/light-up
+          dotColor: '#5eade5', // brand glow on mouse/light-up
           bgColor: '#121212',
           dotOpacity: 0.035
         }
       case 'light':
         return {
-          dotColor: '#f87171',
+          dotColor: '#5eade5',
           bgColor: '#F4F5F5',
           dotOpacity: 0.18
         }
       default:
         return {
-          dotColor: '#ef4444',
+          dotColor: '#5eade5',
           bgColor: '#121212',
           dotOpacity: 0.04
         }

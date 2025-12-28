@@ -17,7 +17,7 @@ function TypeTester() {
   return (
     <div className="flex h-full items-center justify-center">
       <motion.span
-        className="font-serif text-6xl font-medium text-red-400 md:text-8xl"
+        className="font-serif text-6xl font-medium text-[#5eade5] md:text-8xl"
         animate={{ scale }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -45,7 +45,7 @@ function LayoutAnimation() {
         {[1, 2, 3].map((i) => (
           <motion.div
             key={i}
-            className="h-5 w-full rounded-md bg-red-500/30"
+            className="h-5 w-full rounded-md bg-[#5eade5]/30"
             layout
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           />
@@ -70,7 +70,7 @@ function SpeedIndicator() {
           {loading ? (
             <motion.div
               key="loader"
-              className="h-8 w-24 rounded bg-red-500/20"
+              className="h-8 w-24 rounded bg-[#5eade5]/20"
               initial={{ opacity: 0.5 }}
               animate={{ opacity: [0.4, 0.7, 0.4] }}
               exit={{ opacity: 0, y: -20, position: 'absolute' }}
@@ -81,7 +81,7 @@ function SpeedIndicator() {
               key="text"
               initial={{ y: 20, opacity: 0, filter: 'blur(5px)' }}
               animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-              className="font-sans text-3xl font-medium text-red-300 md:text-4xl"
+              className="font-sans text-3xl font-medium text-[#5eade5] md:text-4xl"
             >
               100ms
             </motion.span>
@@ -89,9 +89,9 @@ function SpeedIndicator() {
         </AnimatePresence>
       </div>
       <span className="text-sm text-gray-400">Load Time</span>
-      <div className="h-1.5 w-full max-w-[120px] overflow-hidden rounded-full bg-red-500/10">
+      <div className="h-1.5 w-full max-w-[120px] overflow-hidden rounded-full bg-[#5eade5]/10">
         <motion.div
-          className="h-full rounded-full bg-red-500"
+          className="h-full rounded-full bg-[#5eade5]"
           initial={{ width: 0 }}
           animate={{ width: loading ? 0 : '100%' }}
           transition={{ type: 'spring', stiffness: 100, damping: 15, mass: 1 }}
@@ -126,11 +126,11 @@ function SecurityBadge() {
       {shields.map((shield) => (
         <motion.div
           key={shield.id}
-          className={`flex h-12 w-12 items-center justify-center rounded-lg ${shield.active ? 'bg-red-500/20' : 'bg-red-500/10'}`}
+          className={`flex h-12 w-12 items-center justify-center rounded-lg ${shield.active ? 'bg-[#5eade5]/20' : 'bg-[#5eade5]/10'}`}
           animate={{ scale: shield.active ? 1.1 : 1 }}
           transition={{ duration: 0.3 }}
         >
-          <Lock className={`h-5 w-5 ${shield.active ? 'text-red-300' : 'text-red-700'}`} />
+          <Lock className={`h-5 w-5 ${shield.active ? 'text-[#5eade5]' : 'text-[#5eade5]/50'}`} />
         </motion.div>
       ))}
     </div>
@@ -142,11 +142,11 @@ function GlobalNetwork() {
 
   return (
     <div className="relative flex h-full items-center justify-center">
-      <Globe className="z-10 h-16 w-16 text-red-400" />
+      <Globe className="z-10 h-16 w-16 text-[#5eade5]" />
       {pulses.map((pulse) => (
         <motion.div
           key={pulse}
-          className="absolute h-16 w-16 rounded-full border-2 border-red-400/30"
+          className="absolute h-16 w-16 rounded-full border-2 border-[#5eade5]/30"
           initial={{ scale: 0.5, opacity: 1 }}
           animate={{ scale: 3, opacity: 0 }}
           transition={{
@@ -194,8 +194,8 @@ export function FeaturesSection() {
               <LayoutAnimation />
             </div>
             <div className="mt-4">
-              <h3 className="font-serif text-xl font-medium text-white">Layouts</h3>
-              <p className="mt-1 text-sm text-gray-400">Flexible grids that adapt.</p>
+              <h3 className="font-serif text-xl font-medium text-white">Designs</h3>
+              <p className="mt-1 text-sm text-gray-400">Themes unseen before.</p>
             </div>
           </motion.div>
 
@@ -214,7 +214,7 @@ export function FeaturesSection() {
             </div>
             <div className="relative mt-auto rounded-lg bg-zinc-900/50 p-2 backdrop-blur-sm">
               <h3 className="flex items-center gap-2 font-serif text-xl font-medium text-white">
-                <Globe className="h-5 w-5 text-red-400" />
+                <Globe className="h-5 w-5 text-[#5eade5]" />
                 Global CDN
               </h3>
               <p className="mt-1 text-sm text-gray-400">Lightning-fast content delivery worldwide with edge locations.</p>
@@ -251,7 +251,7 @@ export function FeaturesSection() {
             </div>
             <div className="mt-4">
               <h3 className="flex items-center gap-2 font-serif text-xl font-medium text-white">
-                <Lock className="h-5 w-5 text-red-400" />
+                <Lock className="h-5 w-5 text-[#5eade5]" />
                 Security First
               </h3>
               <p className="mt-1 text-sm text-gray-400">Enterprise-grade encryption and data protection built-in.</p>
@@ -267,7 +267,7 @@ export function FeaturesSection() {
             whileHover={{ scale: 0.98 }}
           >
             <div className="flex flex-1 items-center justify-center">
-              <Smartphone className="h-16 w-16 text-red-400" />
+              <Smartphone className="h-16 w-16 text-[#5eade5]" />
             </div>
             <div className="mt-4">
               <h3 className="font-serif text-xl font-medium text-white">Mobile Ready</h3>
