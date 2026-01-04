@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -59,7 +60,11 @@ export default function Home() {
 function HeroIntro() {
   const router = useRouter()
   const [hovering, setHovering] = useState(false)
-  const options = ['Build a website', 'Build an app', 'Update your front end']
+  const options = [
+    { label: 'Build a website', href: '/build' },
+    { label: 'Build an app', href: '/build' },
+    { label: 'Update your front end', href: '/build' }
+  ]
   const MotionInteractiveHoverButton = motion(InteractiveHoverButton)
 
   return (
@@ -121,12 +126,10 @@ function HeroIntro() {
           <div className="flex flex-col items-start gap-4 pl-4">
             {options.map((item, idx) => (
               <MotionInteractiveHoverButton
-                key={item}
-                text={item}
+                key={item.label}
+                text={item.label}
+                href={item.href}
                 className="w-56 border-[#5eade5]/80 bg-[#5eade5] text-white"
-                onClick={() => {
-                  if (item === 'Build a website') router.push('/build')
-                }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
                   opacity: hovering ? 1 : 0,
