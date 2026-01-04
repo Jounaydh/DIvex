@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
-import { Bell, Home, Settings, User } from 'lucide-react'
+import { Database, Home, Settings, User } from 'lucide-react'
 
 const menuItems = [
   {
@@ -14,16 +14,16 @@ const menuItems = [
     iconColor: 'text-blue-500'
   },
   {
-    icon: <Bell className="h-5 w-5" />,
-    label: 'Notifications',
-    href: '#',
+    icon: <Database className="h-5 w-5" />,
+    label: 'My database',
+    href: '/database',
     gradient: 'radial-gradient(circle, rgba(94,173,229,0.2) 0%, rgba(94,173,229,0.08) 45%, rgba(94,173,229,0) 80%)',
     iconColor: 'text-[#5eade5]'
   },
   {
     icon: <Settings className="h-5 w-5" />,
     label: 'Settings',
-    href: '#',
+    href: '/settings',
     gradient: 'radial-gradient(circle, rgba(94,173,229,0.2) 0%, rgba(94,173,229,0.08) 45%, rgba(94,173,229,0) 80%)',
     iconColor: 'text-[#5eade5]'
   },

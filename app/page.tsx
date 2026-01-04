@@ -76,15 +76,37 @@ function HeroIntro() {
         >
           <AnimatedCircleRings variant="quinary" className="h-[460px] w-[460px]" />
           <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-            <div className="drop-shadow-[0_0_28px_rgba(94,173,229,0.5)] flex items-center justify-center">
-              <Image
-                src="/2221.png"
-                alt="Switch Tech logo"
-                width={2000}
-                height={260}
-                priority
-                className="h-auto w-[750px] max-w-full"
-              />
+            <div className="drop-shadow-[0_0_28px_rgba(94,173,229,0.5)] flex items-center justify-center relative h-[260px] w-full max-w-[750px]">
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: hovering ? 0 : 1 }}
+                transition={{ duration: 0.25 }}
+              >
+                <Image
+                  src="/2221.png"
+                  alt="Switch Tech logo"
+                  width={2000}
+                  height={260}
+                  priority
+                  className="h-auto w-[750px] max-w-full"
+                />
+              </motion.div>
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: hovering ? 1 : 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <Image
+                  src="/11123.png"
+                  alt="Switch Tech secondary logo"
+                  width={2000}
+                  height={260}
+                  priority
+                  className="h-[240px] w-auto max-w-[560px]"
+                />
+              </motion.div>
             </div>
           </div>
         </motion.div>
