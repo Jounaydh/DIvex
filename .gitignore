@@ -38,3 +38,5 @@ yarn.lock
 
 # Build outputs
 build/
+!app/build/
+!app/build/**
