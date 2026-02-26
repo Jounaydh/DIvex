@@ -16,13 +16,11 @@ function TypeTester() {
 
   return (
     <div className="flex h-full items-center justify-center">
-      <motion.span
-        className="font-serif text-6xl font-medium text-[#5eade5] md:text-8xl"
+      <motion.div
+        className="h-20 w-20 rounded-full border-4 border-[#5eade5] bg-[#5eade5]/10 shadow-[0_0_40px_rgba(94,173,229,0.4)] md:h-28 md:w-28"
         animate={{ scale }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      >
-        Aa
-      </motion.span>
+      />
     </div>
   )
 }
@@ -177,8 +175,8 @@ export function FeaturesSection() {
               <TypeTester />
             </div>
             <div className="mt-4">
-              <h3 className="font-serif text-xl font-medium text-white">Typography</h3>
-              <p className="mt-1 text-sm text-gray-400">Beautiful, responsive type that scales perfectly.</p>
+              <h3 className="font-serif text-xl font-medium text-white">Animation</h3>
+              <p className="mt-1 text-sm text-gray-400">Eye catching and responsive animations set to your choice.</p>
             </div>
           </motion.div>
 

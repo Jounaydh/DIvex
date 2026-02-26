@@ -8,13 +8,13 @@ import { DotScreenShader } from '@/components/ui/dot-shader-background'
 import { HeroMenuBar } from '@/components/ui/hero-menu-bar'
 import { ShatterButton } from '@/components/ui/shatter-button'
 
-const packages = ['Aurora Luxe ($150k+)', 'Modernist Studio ($90k)', 'Founders Launch ($45k)', 'Lean Launch ($15k)']
+const packages = ['Lean Launch ($1000)', 'Founders Launch ($700)', 'Modernist Studio ($500)', 'Aurora Luxe ($300)']
 const integrations = ['Analytics', 'CRM', 'Payments', 'Auth/SSO', 'CMS', 'A/B testing', 'AI assistant']
 const packageImages = [
-  'https://images.unsplash.com/photo-1522199710521-72d69614c702?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?q=80&w=1200&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?q=80&w=1200&auto=format&fit=crop'
+  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1522199710521-72d69614c702?q=80&w=1200&auto=format&fit=crop'
 ]
 
 const palettes = [
@@ -66,6 +66,7 @@ export default function BuildNewPage() {
   const [selectedPalette, setSelectedPalette] = useState(palettes[1])
   const [selectedExample, setSelectedExample] = useState(uiExamples[1])
   const [customColors, setCustomColors] = useState<string[]>(['#5eade5', '#9fffe0'])
+  const [useCustomPalette, setUseCustomPalette] = useState(false)
   const router = useRouter()
 
   const toggleIntegration = (value: string) => {
@@ -166,13 +167,14 @@ export default function BuildNewPage() {
               <p className="text-sm uppercase tracking-[0.25em] text-[#5eade5]">Pick your palette</p>
               <div className="grid gap-3 md:grid-cols-2">
                 {palettes.map((pal) => {
-                  const active = selectedPalette.name === pal.name
+                  const active = !useCustomPalette && selectedPalette.name === pal.name
                   return (
                     <motion.button
                       key={pal.name}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => {
+                        setUseCustomPalette(false)
                         setSelectedPalette(pal)
                         setForm((f) => ({ ...f, palette: pal.name }))
                       }}
@@ -200,8 +202,29 @@ export default function BuildNewPage() {
                   )
                 })}
               </div>
-              <div className="grid gap-3 rounded-xl border border-dashed border-zinc-800 bg-zinc-900/50 p-4">
-                <p className="text-sm font-semibold text-white">Custom palette</p>
+              <div
+                className={`grid gap-3 rounded-2xl border border-dashed bg-zinc-900/50 p-4 transition ${
+                  useCustomPalette ? 'border-[#5eade5] ring-1 ring-[#5eade5]/40' : 'border-zinc-800'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-sm font-semibold text-white">Custom palette</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setUseCustomPalette(true)
+                      setSelectedPalette({ name: 'Custom', colors: customColors })
+                      setForm((f) => ({ ...f, palette: customColors.join(' ') }))
+                    }}
+                    className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
+                      useCustomPalette
+                        ? 'border-[#5eade5] bg-[#5eade5]/20 text-white'
+                        : 'border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-[#5eade5]/60'
+                    }`}
+                  >
+                    {useCustomPalette ? 'Using custom palette' : 'Use this palette'}
+                  </button>
+                </div>
                 <div className="grid gap-3">
                   {customColors.map((color, idx) => (
                     <label
@@ -216,7 +239,10 @@ export default function BuildNewPage() {
                           const val = e.target.value
                           setCustomColors((prev) => {
                             const next = prev.map((c, i) => (i === idx ? val : c))
-                            setForm((f) => ({ ...f, palette: next.join(' ') }))
+                            if (useCustomPalette) {
+                              setSelectedPalette({ name: 'Custom', colors: next })
+                              setForm((f) => ({ ...f, palette: next.join(' ') }))
+                            }
                             return next
                           })
                         }}
@@ -229,7 +255,10 @@ export default function BuildNewPage() {
                           onClick={() =>
                             setCustomColors((prev) => {
                               const next = prev.filter((_, i) => i !== idx)
-                              setForm((f) => ({ ...f, palette: next.join(' ') }))
+                              if (useCustomPalette) {
+                                setSelectedPalette({ name: 'Custom', colors: next })
+                                setForm((f) => ({ ...f, palette: next.join(' ') }))
+                              }
                               return next
                             })
                           }
@@ -240,21 +269,24 @@ export default function BuildNewPage() {
                       )}
                     </label>
                   ))}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setCustomColors((prev) => {
-                        const next = [...prev, '#ffffff']
+                <button
+                  type="button"
+                  onClick={() =>
+                    setCustomColors((prev) => {
+                      const next = [...prev, '#ffffff']
+                      if (useCustomPalette) {
+                        setSelectedPalette({ name: 'Custom', colors: next })
                         setForm((f) => ({ ...f, palette: next.join(' ') }))
-                        return next
-                      })
-                    }
-                    className="w-full rounded-lg border border-dashed border-zinc-700 bg-zinc-900/80 px-3 py-2 text-sm font-semibold text-white transition hover:border-[#5eade5] hover:text-[#5eade5]"
+                      }
+                      return next
+                    })
+                  }
+                  className="w-full rounded-lg border border-dashed border-zinc-700 bg-zinc-900/80 px-3 py-2 text-sm font-semibold text-white transition hover:border-[#5eade5] hover:text-[#5eade5]"
                   >
                     + Add another color
                   </button>
                 </div>
-                <p className="text-xs text-zinc-400">Use the pickers to craft a custom set, or choose a preset above.</p>
+                <p className="text-xs text-zinc-400">Use the pickers to craft a custom set, then click “Use this palette” to apply.</p>
               </div>
               <input
                 placeholder="Brand adjectives (e.g., bold, minimal, playful)"

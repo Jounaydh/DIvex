@@ -2,14 +2,11 @@
 
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { forwardRef, ButtonHTMLAttributes, MouseEventHandler } from 'react'
+import { forwardRef, ButtonHTMLAttributes } from 'react'
 
 type InteractiveHoverButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text?: string
   href?: string
-  anchorTarget?: string
-  anchorRel?: string
-  linkOnClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
 function cn(...classes: Array<string | undefined | false | null>) {
@@ -17,7 +14,7 @@ function cn(...classes: Array<string | undefined | false | null>) {
 }
 
 export const InteractiveHoverButton = forwardRef<HTMLButtonElement, InteractiveHoverButtonProps>(
-  ({ text = 'Button', className, href, onClick, linkOnClick, anchorTarget, anchorRel, ...buttonProps }, ref) => {
+  ({ text = 'Button', className, href, ...props }, ref) => {
     const content = (
       <>
         <span className="inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
@@ -38,14 +35,14 @@ export const InteractiveHoverButton = forwardRef<HTMLButtonElement, InteractiveH
 
     if (href) {
       return (
-        <Link href={href} className={baseClass} onClick={linkOnClick} target={anchorTarget} rel={anchorRel}>
+        <Link href={href} className={baseClass}>
           {content}
         </Link>
       )
     }
 
     return (
-      <button ref={ref} className={baseClass} onClick={onClick} {...buttonProps}>
+      <button ref={ref} className={baseClass} {...props}>
         {content}
       </button>
     )
